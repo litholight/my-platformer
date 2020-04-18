@@ -21,13 +21,22 @@ const loadBackgroundSprites = () => {
   });
 };
 
+const loadIanSprites = () => {
+  return loadImage("/images/characters.png").then((image) => {
+    const sprites = new SpriteSheet(image, 16, 16);
+    sprites.define("idleIan", 0, 0);
+    return sprites;
+  });
+};
+
 const canvas = document.getElementById("screen");
 const context = canvas.getContext("2d");
 
-Promise.all([loadBackgroundSprites(), loadLevel("1-1")]).then(
-  ([sprites, level]) => {
+Promise.all([loadIanSprites(), loadBackgroundSprites(), loadLevel("1-1")]).then(
+  ([ianSprite, sprites, level]) => {
     level.backgrounds.forEach((background) =>
       drawBackground(background, context, sprites)
     );
+    ianSprite.draw("idleIan", context, 64, 179);
   }
 );
