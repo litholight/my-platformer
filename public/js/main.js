@@ -14,9 +14,9 @@ const drawBackground = (background, context, sprites) => {
 const loadBackgroundSprites = () => {
   return loadImage("/images/tiles.png").then((image) => {
     const sprites = new SpriteSheet(image, 16, 16);
-    sprites.define("sky", 1, 0);
-    sprites.define("grass", 0, 0);
-    sprites.define("ground", 0, 1);
+    sprites.defineTile("sky", 1, 0);
+    sprites.defineTile("grass", 0, 0);
+    sprites.defineTile("ground", 0, 1);
     return sprites;
   });
 };
@@ -24,7 +24,7 @@ const loadBackgroundSprites = () => {
 const loadIanSprites = () => {
   return loadImage("/images/characters.png").then((image) => {
     const sprites = new SpriteSheet(image, 16, 16);
-    sprites.define("idleIan", 0, 0);
+    sprites.defineTile("idleIan", 0, 0);
     return sprites;
   });
 };
