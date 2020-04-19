@@ -16,9 +16,21 @@ const context = canvas.getContext("2d");
 
 Promise.all([loadIanSprites(), loadBackgroundSprites(), loadLevel("1-1")]).then(
   ([ianSprite, sprites, level]) => {
-    level.backgrounds.forEach((background) =>
-      drawBackground(background, context, sprites)
-    );
-    ianSprite.draw("idleIan", context, 64, 179);
+    const pos = {
+      x: 64,
+      y: 64,
+    };
+
+    const update = () => {
+      pos.x += 2;
+      pos.y += 2;
+
+      level.backgrounds.forEach((background) =>
+        drawBackground(background, context, sprites)
+      );
+      ianSprite.draw("idleIan", context, pos.x, pos.y);
+      requestAnimationFrame(update);
+    };
+    update();
   }
 );
