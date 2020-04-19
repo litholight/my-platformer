@@ -1,5 +1,5 @@
-import SpriteSheet from "./SpriteSheet.js";
-import { loadImage, loadLevel } from "./loaders.js";
+import { loadLevel } from "./loaders.js";
+import { loadBackgroundSprites, loadIanSprites } from "./sprites.js";
 
 const drawBackground = (background, context, sprites) => {
   background.ranges.forEach(([x1, x2, y1, y2]) => {
@@ -8,24 +8,6 @@ const drawBackground = (background, context, sprites) => {
         sprites.drawTile(background.tile, context, x, y);
       }
     }
-  });
-};
-
-const loadBackgroundSprites = () => {
-  return loadImage("/images/tiles.png").then((image) => {
-    const sprites = new SpriteSheet(image, 16, 16);
-    sprites.defineTile("sky", 1, 0);
-    sprites.defineTile("grass", 0, 0);
-    sprites.defineTile("ground", 0, 1);
-    return sprites;
-  });
-};
-
-const loadIanSprites = () => {
-  return loadImage("/images/characters.png").then((image) => {
-    const sprites = new SpriteSheet(image, 16, 16);
-    sprites.defineTile("idleIan", 0, 0);
-    return sprites;
   });
 };
 
